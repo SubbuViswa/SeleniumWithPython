@@ -2,16 +2,20 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
 
-browserName ="edge"
+browserName = "safari"
 
 if browserName == "chrome":
-    driver = webdriver.Chrome()
+    options = webdriver.ChromeOptions()
+    options.add_argument("--incognito")
+    driver = webdriver.Chrome(options=options)
 elif browserName == "firefox":
-    driver = webdriver.Firefox()
+    options = webdriver.FirefoxOptions()
+    options.add_argument("--headless")
+    driver = webdriver.Firefox(options=options)
 elif browserName == "edge":
     driver = webdriver.Edge()
 else:
-    print("Please enter the browser name:" + browserName)
+    print("Please enter a valid browser")
     raise Exception('Driver is not found')
 
 driver.implicitly_wait(5)
